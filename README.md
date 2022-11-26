@@ -78,7 +78,7 @@ plt.imshow(img)
 
 
 
-    <matplotlib.image.AxesImage at 0x7874f756c0>
+    <matplotlib.image.AxesImage at 0x702eb75510>
 
 
 
@@ -99,7 +99,7 @@ plt.imshow(img)
 
 
 
-    <matplotlib.image.AxesImage at 0x7872e399f0>
+    <matplotlib.image.AxesImage at 0x702ca40340>
 
 
 
@@ -119,7 +119,7 @@ plt.imshow(img,cmap="gray")
 
 
 
-    <matplotlib.image.AxesImage at 0x7870488850>
+    <matplotlib.image.AxesImage at 0x702c09b790>
 
 
 
@@ -244,3 +244,156 @@ plt.show()
 
 
 
+
+### outro exemplo 
+
+
+```python
+img = cv2.imread('test3.jpg')
+```
+
+
+```python
+plt.imshow(img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7024624580>
+
+
+
+
+    
+![png](output_39_1.png)
+    
+
+
+
+```python
+img = dn.cinzando(img)
+plt.imshow(img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x70246258a0>
+
+
+
+
+    
+![png](output_40_1.png)
+    
+
+
+
+```python
+plt.imshow(img,cmap='gray')
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7024590820>
+
+
+
+
+    
+![png](output_41_1.png)
+    
+
+
+
+```python
+img_r = dn.adicionar_ruido(img)
+
+plt.imshow(img_r,cmap='gray')
+plt.show()
+```
+
+
+    
+![png](output_42_0.png)
+    
+
+
+
+```python
+img_nova_m = dn.retirar_ruido(img_r,prt=False)
+
+plt.imshow(img_nova_m,cmap="gray")
+plt.show()
+```
+
+    então...
+    foi... sheipado
+
+
+
+    
+![png](output_43_1.png)
+    
+
+
+
+```python
+img_nova = dn.retirar_ruido(img_r,modo='T',T=3,prt=False)
+
+plt.imshow(img_nova,cmap="gray")
+plt.show()
+```
+
+    então...
+    foi... sheipado
+
+
+
+    
+![png](output_44_1.png)
+    
+
+
+
+```python
+img_nova = dn.retirar_ruido(img_r,modo='T',T=3,prt=False)
+
+plt.imshow(img_nova)
+plt.show()
+```
+
+    então...
+    foi... sheipado
+
+
+
+    
+![png](output_45_1.png)
+    
+
+
+
+```python
+img_nova_n = dn.retirar_ruido(img_r,prt=False)
+
+plt.imshow(img_nova_n)
+plt.show()
+```
+
+    então...
+    foi... sheipado
+
+
+
+    
+![png](output_46_1.png)
+    
+
+
+
+```python
+
+```
