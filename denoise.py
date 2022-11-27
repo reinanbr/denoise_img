@@ -34,8 +34,8 @@ def plt_169(img,title):
 
 
 #criando função para o ruido impulsivo (sal e pimenta)
-def adicionar_ruido(img, modo='s&p',grau=.4):
-    img_n = img #criando uma nova img a partir da original
+def adicionar_ruido(img_or, modo='s&p',grau=.4):
+    img_n =np.zeros(img_or.shape) #criando uma nova img a partir da original
     linhas , colunas = img_n.shape #pegando o numero de linhas e colunas da imagem
     n_pixels = linhas*colunas
     if 's' in modo:
@@ -52,7 +52,7 @@ def adicionar_ruido(img, modo='s&p',grau=.4):
           x_coord=random.randint(0, colunas - 1) ##escolhendo de maneira aleatoria onde o ruido de pimenta vai cair nas colunas da imagem
           img_n[y_coord][x_coord] = 0 #adicinando a pimenta 
            
-    return img_n.astype(np.uint8) #retornando a matrix da imagem já ruidosa como uint8 para não dá erro na sua acoplagem ou subtração com a original
+    return cv2.add(img_or,img_n.astype(np.uint8)) #retornando a matrix da imagem já ruidosa como uint8 para não dá erro na sua acoplagem ou subtração com a original
 
 
 
@@ -169,10 +169,10 @@ def mediana2D_filtro(arr,modo='med',T=10):
 '''Eh ISSO AQUI QUE VAI ORGANIZAR A IMAGEM EM PIXELS 3X3, E FAZER O CAPIROTINHO QUE FIZEMOS, ANDAR EM TODOS ESSES PIXELS, FILTRANDO ELES'''
 
 #função para retirar o ruído (pela mediana de cada pixel de matriz)
-def retirar_ruido(img,modo="med",T=5,prt=True):
-    rest_pixel = img[0:(img.shape[0]-(img.shape[0]%9))] # tirando o excesso da imagem que não poderar ser organizada em pixels 3x3
-    img_3D = img.reshape((img.shape[0]*img.shape[1])//9,3,3) # reorganizando a imagem cinza, em pixels 3x3
-    nova_img = img_3D
+def retirar_ruido(img_ori,modo="med",T=5,prt=True):
+    rest_pixel = img_ori[0:(img_ori.shape[0]-(img_ori.shape[0]%9))] # tirando o excesso da imagem que não poderar ser organizada em pixels 3x3
+    img_3D = img_ori.reshape((img_ori.shape[0]*img_ori.shape[1])//9,3,3) # reorganizando a imagem cinza, em pixels 3x3
+    nova_img = img_3D #np.zeros(img_3D.shape)
     i = 0 # interação para contagem de índices 
     c = 0 # interação para percorrer as colunas
     l = 0 # interação para andar as linhas 
@@ -196,11 +196,11 @@ def retirar_ruido(img,modo="med",T=5,prt=True):
         i+=1 # interação para fazer o índice de produção saber em qual percudo estamos 
         
     print('então...') # tentei fazer uma piadoca, mas não consegui ;-;
-    nova_img = nova_img.reshape(*img.shape) # reorganizando a imagem do jeito que a pegamos 
+    nova_im = nova_img.reshape(*img_ori.shape) # reorganizando a imagem do jeito que a pegamos 
     # muito foda, né?
     
     print('foi... sheipado') # melhor do que academia :)
-    return nova_img
+    return nova_im
 
 
 
