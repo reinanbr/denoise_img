@@ -114,7 +114,7 @@ plt.imshow(img,cmap="gray")
 
 
 
-    <matplotlib.image.AxesImage at 0x7f46ec2a4a90>
+    <matplotlib.image.AxesImage at 0x7f46e6aa83d0>
 
 
 
@@ -208,16 +208,23 @@ plt.plot(imgD,label='filtro de mediana')
 plt.title('diferença do histograma das 3 imagens presentes no trabalho',fontweight='bold')
 plt.legend()
 
-plt.savefig('histo_geral.png',dpi=800)
+#plt.savefig('histo_geral.png',dpi=800)
 ```
 
-    /tmp/ipykernel_5142/3298034979.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as 'seaborn-v0_8-<style>'. Alternatively, directly use the seaborn API instead.
+    /tmp/ipykernel_5142/1645106125.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as 'seaborn-v0_8-<style>'. Alternatively, directly use the seaborn API instead.
       plt.style.use('seaborn')
 
 
 
+
+
+    <matplotlib.legend.Legend at 0x7f46e680c190>
+
+
+
+
     
-![png](output_12_1.png)
+![png](output_12_2.png)
     
 
 
@@ -247,7 +254,7 @@ axs[1][2].plot(imgD,c='green')
 axs[1][2].set_title('hist. da imagem acima')
 
 
-plt.savefig('histo_blocs.png',dpi=800)
+#plt.savefig('histo_blocs.png',dpi=800)
 ```
 
 
@@ -255,3 +262,8 @@ plt.savefig('histo_blocs.png',dpi=800)
 ![png](output_13_0.png)
     
 
+
+
+```python
+
+```
