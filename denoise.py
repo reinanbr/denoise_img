@@ -10,7 +10,7 @@ np.seterr(all='ignore') #ignorar errinhos de ndarray (listas de numpy)
 
 
 
-###////////////////////////////////////////////////////
+###///////////////////////////////////////////////////
 ''' criando funções importantes '''
 def cinzando(img):
   img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #deixando a imagem cinza (feia) para poder ser trabalhada melhor
