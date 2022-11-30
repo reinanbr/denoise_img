@@ -12,18 +12,18 @@ np.seterr(all='ignore') #ignorar errinhos de ndarray (listas de numpy)
 
 ###///////////////////////////////////////////////////
 ''' criando funções importantes '''
-def cinzando(img):
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #deixando a imagem cinza (feia) para poder ser trabalhada melhor
-  return img
+def cinzando(img_):
+  img_ = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY) #deixando a imagem cinza (feia) para poder ser trabalhada melhor
+  return img_
 #para plotagem
-def plt_169(img,title):
+def plt_169(img_,title):
     #plt.cla() #limpa os axels
     #plt.clf() #limpa o figure
     
     
     #ax, fig = plt.subplots(figsize=(16,9)) #criando novos axes e figures com tamanho de 16x9
     
-    plt.imshow(img,cmap='gray') #pega a imagem para plotagem
+    plt.imshow(img_,cmap='gray') #pega a imagem para plotagem
     plt.title(title,fontweight='bold') #dá o titulo ao plot
     plt.savefig(title.replace(' ','_')+'.png') #salva o plot com o nome do titulo
     plt.clf()
@@ -34,8 +34,8 @@ def plt_169(img,title):
 
 
 #criando função para o ruido impulsivo (sal e pimenta)
-def adicionar_ruido(img_or, modo='s&p',grau=.4):
-    img_n =np.zeros(img_or.shape) #criando uma nova img a partir da original
+def adicionar_ruido(img_or_, modo='s&p',grau=.4):
+    img_n =np.zeros(img_or_.shape) #criando uma nova img a partir da original
     linhas , colunas = img_n.shape #pegando o numero de linhas e colunas da imagem
     n_pixels = linhas*colunas
     if 's' in modo:
@@ -43,16 +43,16 @@ def adicionar_ruido(img_or, modo='s&p',grau=.4):
       for i in range(pixels):
           y_coord=random.randint(0, linhas - 1) #escolhendo de maneira aleatoria onde o ruido de sal vai cair nas linhas da imagem
           x_coord=random.randint(0, colunas - 1) #escolhendo de maneira aleatoria onde o ruido de sal vai cair nas colunas da imagem
-          img_n[y_coord][x_coord] = 255 #adicinando o sal
+          img_n[y_coord][x_coord] = np.random.randint(90,255) #adicinando o sal
           
     if 'p' in modo:
       pixels = random.randint(300,int(10000)) # número de pixels com pimenta
       for i in range(pixels):
           y_coord=random.randint(0, linhas - 1) #escolhendo de maneira aleatoria onde o ruido de pimenta vai cair nas linhas da imagem
           x_coord=random.randint(0, colunas - 1) ##escolhendo de maneira aleatoria onde o ruido de pimenta vai cair nas colunas da imagem
-          img_n[y_coord][x_coord] = 0 #adicinando a pimenta 
+          img_n[y_coord][x_coord] = np.random.randint(0,10) #adicinando a pimenta 
            
-    return cv2.add(img_or,img_n.astype(np.uint8)) #retornando a matrix da imagem já ruidosa como uint8 para não dá erro na sua acoplagem ou subtração com a original
+    return cv2.add(img_or_,img_n.astype(np.uint8)) #retornando a matrix da imagem já ruidosa como uint8 para não dá erro na sua acoplagem ou subtração com a original
 
 
 
@@ -171,15 +171,15 @@ def mediana2D_filtro(arr,modo='med',T=10):
 #função para retirar o ruído (pela mediana de cada pixel de matriz)
 def retirar_ruido(img_ori,modo="med",T=5,prt=True):
     rest_pixel = img_ori[0:(img_ori.shape[0]-(img_ori.shape[0]%9))] # tirando o excesso da imagem que não poderar ser organizada em pixels 3x3
-    img_3D = img_ori.reshape((img_ori.shape[0]*img_ori.shape[1])//9,3,3) # reorganizando a imagem cinza, em pixels 3x3
-    nova_img = img_3D #np.zeros(img_3D.shape)
+    img_3D_ = img_ori.reshape((img_ori.shape[0]*img_ori.shape[1])//9,3,3) # reorganizando a imagem cinza, em pixels 3x3
+    nova_img = np.zeros(img_3D_.shape) #np.zeros(img_3D.shape)
     i = 0 # interação para contagem de índices 
     c = 0 # interação para percorrer as colunas
     l = 0 # interação para andar as linhas 
     
     #visitando os pixels 3x3 e filtrando eles com a mediana
-    size = len(img_3D) # pegando o número de pixels 3x3
-    for pixel in img_3D:
+    size = len(img_3D_) # pegando o número de pixels 3x3
+    for pixel in img_3D_:
       
         #print simples para mostrar a nossa taxa de produção
         if prt==True:
